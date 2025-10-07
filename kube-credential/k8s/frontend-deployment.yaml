@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: kube-credential
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: kube-credential-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_ISSUANCE_BASE_URL
+              value: http://issuance-service.kube-credential.svc.cluster.local:3000
+            - name: VITE_VERIFICATION_BASE_URL
+              value: http://verification-service.kube-credential.svc.cluster.local:3001

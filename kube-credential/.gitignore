@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+**/dist
+**/.turbo
+**/.nyc_output
+**/coverage
+**/.env
+**/.DS_Store
+**/data
+**/tmp-test*
